@@ -48,12 +48,11 @@ def home(request):
 class ProductDetailView(View):
     def get(self, request, pk):
         product = Product.objects.get(pk = pk)
-        status = 1
+        status = False
         if Cart.objects.filter(pk=pk).exists():
-            status = 1
+            status = True
         else:
-            status = 0
-        print(status)
+            status = False
         return render(request, 'app/productdetail.html', {'product':product, 'status':status})
  
 
