@@ -13,15 +13,17 @@
    <p>Product Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, at. Dignissimos rerum incidunt temporibus laudantium. Rem, eveniet corporis. Itaque delectus quae nesciunt nemo, maiores minus deserunt vel. Vero, nulla quisquam!</p> <br>
    <h4> <strong> <small class=" text-danger">&#8377; {{product.selling_price}}</small>  </h4> <br>
 
-   {% if status == 1 %}
+   
+   {% if status %}
+   <a href="{% url 'showcart' %}"><button class="btn btn-success">Show cart</button></a>
+   
+
+   {% else %}
    <form action="/add-to-cart" method="POST" class="d-inline">
     {% csrf_token %}
         <input type="hidden" name="prod_id" id="prod_id" value={{product.id}}>
         <button class='btn btn-primary pull-right mx-auto' type="submit" id="adding" name="addcart">Add to cart</button>
     </form>
-
-   {% else %}
-   <a href="{% url 'showcart' %}"><button class="btn btn-success">Show cart</button></a>
 
    {% endif %}
    <h5 class="mt-5">Available Offers</h5>
